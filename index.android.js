@@ -123,7 +123,7 @@ export default class detecta extends Component {
 
   onActionSelected(position){
     this.setState({
-      actionText: 'SELECTED' + toolbarActions[position].title
+      actionText: 'SELECTED' + toolbarActions[position].title 
     })
 
   }
