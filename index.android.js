@@ -12,7 +12,7 @@ import {
   View,
   Navigator,
   TouchableHighlight,
-  ToolbarAndroid,
+  
 } from 'react-native'; 
 
 var styles = require('./src/components/style');
@@ -20,21 +20,24 @@ var styles = require('./src/components/style');
 import OneSignal from 'react-native-onesignal';
 
 const Login = require('./src/components/loginView')
+//const Tabs = require('./src/components/tabs')
 const Instance = require('./src/components/instanceView')
 const Alert = require('./src/components/alertView')
 const Details = require('./src/components/alertDetailView')
 const Server = require('./src/components/disableServerView')
+const Logout =  require('./src/components/logoutView') 
+const AboutUs =  require('./src/components/AboutUs') 
 
 var NavigatorBarRouteMapper = {
   LeftButton: function (route, navigator, index){
     //console.log('back')
     //if(route.name == 'Login'){
-
+    //  return null;
     if(index == 0){
       return null
     }
     return(
-      <View>
+     <View>
         <TouchableHighlight onPress={() => {
             if(index > 0){
                navigator.pop();
@@ -42,31 +45,19 @@ var NavigatorBarRouteMapper = {
           }}>
           <Text style={styles.navbar}>&lt; Back</Text>
         </TouchableHighlight> 
-      </View>       
+      </View> 
+
     )
   },
   RightButton: function (route, navigator, index){
-    //return null;
-    if(index == 0 && route.name === 'Login'){
-      return null
-    }
-    return(
-        <View>
-        <TouchableHighlight onPress={() => {
-            //if(index > 0 ){
-             //  navigator.replace(Login);
-            //}
-            //console.log('logout')
-            
-          }}>
-          <Text style={styles.navbarLogout}>X</Text>
-        </TouchableHighlight> 
-      </View>
-      )
+    return null;
+    
     
   },
   
   Title: function (route, navigator, index){
+
+    //return null;
     if(route.name == 'Login'){
       return null
     }
@@ -78,11 +69,13 @@ var NavigatorBarRouteMapper = {
 
 export default class detecta extends Component {
 
-       /*        componentDidMount(){
-        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.DEBUG, OneSignal.LOG_LEVEL.DEBUG); 
-    }  */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-
+  constructor(props){
+    super(props);
+    this._setNavigatorRef = this._setNavigatorRef.bind(this);
     
+    
+  }
+   
 
   renderScene(route, navigator){
     switch (route.name){
@@ -102,52 +95,63 @@ export default class detecta extends Component {
         return (
           <Details {...route.props} navigator={navigator} route={route}></Details>
         );
-        case 'Server':
+      case 'Server':
         return (
           <Server {...route.props} navigator={navigator} route={route}></Server>
+        );
+      case 'Logout':
+        return (
+          <Logout {...route.props} navigator={navigator} route={route}></Logout>
+        );
+      case 'AboutUs':
+        return (
+          <AboutUs {...route.props} navigator={navigator} route={route}></AboutUs>
         );
       
     }
   }
 
-  constructor(){
-    super();
-    this.state = {
-      actionText: 'Welcome to Detecta'
-    }
-  }
-
-  onSettingsClick(){
-    console.log('Settings Clicked');
-  }
-
-  onActionSelected(position){
-    this.setState({
-      actionText: 'SELECTED' + toolbarActions[position].title 
-    })
-
+  
+  componentWillUnmount() {
+    this._listeners && this._listeners.forEach(listener => listener.remove());
   }
 
   componentWillMount() {
         // Sending single tag
-        OneSignal.sendTag("key", "Customer One");
+        OneSignal.sendTag("key", "Customer One"); 
     }
+
+  _setNavigatorRef(navigator) {
+    if (navigator !== this._navigator) {
+      this._navigator = navigator;
+
+      if (navigator) {
+        var callback = (event) => {
+          console.log(
+            `NavigatorMenu: event ${event.type}`,
+            {
+              route: JSON.stringify(event.data.route),
+              target: event.target,
+              type: event.type,
+            }
+          );
+        };
+        // Observe focus change events from the owner.
+        this._listeners = [
+          navigator.navigationContext.addListener('willfocus', callback),
+          navigator.navigationContext.addListener('didfocus', callback),
+        ];
+      }
+    }
+  }
 
   render(){
     return(
 
-      /*<View>
-        <ToolbarAndroid
-          style={st.toolbar}
-          title="Detecta"
-          //actions={[{title:'Settings', show:'always'}]}
-          actions={toolbarActions}
-          onActionSelected={this.onActionSelected.bind(this)}
-
-        />
-        <Text style={st.mainText}>{this.state.actionText}</Text>
-      </View>*/
-      <Navigator style={{backgroundColor:'#fff'}}
+      //prueba navigator in sideMenu
+      <Navigator 
+        ref={this._setNavigatorRef}
+        style={{backgroundColor:'#fff'}}
         initialRoute={{name:'Login'}}
         renderScene={this.renderScene}
         configureScene={(route) => {
@@ -156,21 +160,17 @@ export default class detecta extends Component {
             }
             return Navigator.SceneConfigs.FloatFromRight
           }}
-        navigationBar={
+        /*navigationBar={
           <Navigator.NavigationBar
             routeMapper={NavigatorBarRouteMapper}/>
-        }
+        }*/
         />
       
     )
   }
 }
 
-const toolbarActions = [
-  {title:'', show:'always'},
-  {title: 'Instance'},
-  {title: 'Logout'}
-]
+
 
 var st = StyleSheet.create({
   toolbar: {
@@ -179,7 +179,8 @@ var st = StyleSheet.create({
   },
   mainText:{
     padding: 20
-  }
+  },
+
   
 });
 

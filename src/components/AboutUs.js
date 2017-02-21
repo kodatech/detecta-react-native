@@ -19,16 +19,18 @@ var Menu = require('./Menu');
 
 var MenuButton = require('./MenuButton');
 
-class alertDetailView extends Component {
+class AboutUs extends Component {
+
     constructor(props){
         super(props)
         //console.log(this.props.route.passProps)
-        this.passProps = this.props.route.passProps
-        this.modified = this.passProps.alert.modified.slice(0,10)
+        //this.passProps = this.props.route.passProps
+        //this.modified = this.passProps.alert.modified.slice(0,10)
         this.state = {
             loaded: false,
         }
     }
+
     onMenuItemSelected = (item) => {
         this.setState({
             isOpen: false,      
@@ -46,30 +48,20 @@ class alertDetailView extends Component {
     updateMenuState(isOpen) {
         this.setState({ isOpen, });
     }
+    
     render(){
         const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>;
         return(
-            <SideMenu   
+           <SideMenu   
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
                 <MenuButton onPress={() => this.toggle()}/>
-                <View style={styles.containerDetail}>
-                    <View style={styles.alertDetail}>
-                        <Text style={styles.titleDetail}>{this.passProps.alert.name}</Text>
-                        <Text style={styles.descriptionDetail}>
-                            {this.passProps.alert.description}
-                        </Text>
-                        <Text style={styles.descriptionDetail}>Disponibles: {this.passProps.alert.comics.available}</Text>
-                        <Text style={styles.modifiedDetail}>Modificado: {this.modified}</Text>
-                    </View>
-
-                </View>
+                <Text style={styles.container}>AboutUs</Text>
             </SideMenu>
-        
     )
     }
 }
 
 
-module.exports = alertDetailView
+module.exports = AboutUs

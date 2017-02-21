@@ -12,13 +12,21 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-
+const REQUEST_URL = "http://gateway.marvel.com:80/v1/public/characters";
 
 var Crypto = require('crypto-js');
+
 var styles = require('./style');
+
 var AlertDetail = require('./alertDetailView');
 
-const REQUEST_URL = "http://gateway.marvel.com:80/v1/public/characters"
+var SideMenu = require('react-native-side-menu');
+
+var Menu = require('./Menu');
+
+var MenuButton = require('./MenuButton');
+
+
 
 class alertView extends Component {
     constructor(props){
@@ -80,19 +88,44 @@ class alertView extends Component {
         )
     }
     
-	
+	onMenuItemSelected = (item) => {
+        this.setState({
+            isOpen: false,      
+            selectedItem: item,
+        });
+        this.props.navigator.replace({ name: item });
+    }
+
+    toggle() {
+        this.setState({
+          isOpen: !this.state.isOpen,
+        });
+    }
+
+    updateMenuState(isOpen) {
+        this.setState({ isOpen, });
+    }
+
     render(){
+        const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>;
+
         if(!this.state.loaded){
             return this.renderLoadingView();
         }
         return(
-            <ListView 
-            	style={styles.container}
-				dataSource={this.state.dataSource}
-				renderRow={this.renderAlert.bind(this)}
-		    />
+
+            <SideMenu   
+                menu={menu}
+                isOpen={this.state.isOpen}
+                onChange={(isOpen) => this.updateMenuState(isOpen)}>
+                <MenuButton onPress={() => this.toggle()}/>
+                <ListView 
+                	style={styles.container}
+    				dataSource={this.state.dataSource}
+    				renderRow={this.renderAlert.bind(this)}
+    		    />
             
-			
+			</SideMenu>
         )
     }
 }

@@ -167,5 +167,27 @@ module.exports = StyleSheet.create({
 		justifyContent: 'space-between',
 		paddingLeft: 15,
 	},
+	hideTab: {
+		width: 0
+	},
+	menu: {
+      flex: 1,
+      width: window.width,
+      height: window.height,
+      padding: 20,
+    },
+    item: {
+      fontSize: 16,
+      fontWeight: '300',
+      paddingTop: 60,
+  }, 
+  menuButton: {
+        //paddingTop: 5,
+        paddingLeft: 20,
+        marginTop:2,
+        height:1,
+
+        
+    }, 
 
 });

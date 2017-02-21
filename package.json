@@ -11,6 +11,7 @@
     "react": "15.4.2",
     "react-native": "0.41.2",
     "react-native-onesignal": "^3.0.3",
+    "react-native-side-menu": "^0.20.1",
     "react-native-swipe-list-view": "^0.3.3"
   },
   "devDependencies": {

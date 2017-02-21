@@ -9,22 +9,31 @@ import {
     StyleSheet,
     ListView,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView,
+    Button,
+    
 
 } from 'react-native';
 
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 
+const REQUEST_URL = "http://gateway.marvel.com:80/v1/public/characters";
+
+var SideMenu = require('react-native-side-menu');
+
 var Crypto = require('crypto-js');
 
 var styles = require('./style');
 
-const REQUEST_URL = "http://gateway.marvel.com:80/v1/public/characters";
+var Menu = require('./Menu');
 
-var AlertDetail = require('./disableServerView');
+var MenuButton = require('./MenuButton');
+
 
 class instanceView extends Component {
     constructor(props){
+
         super(props);
         this.timestamp = 1;
         this.public_key = '45ecdcaeb78978d778efd8847d848127';
@@ -33,7 +42,8 @@ class instanceView extends Component {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1,row2) => row1 !== row2							
             }),
-            loaded: false 
+            loaded: false,
+
         }
     }
     
@@ -107,20 +117,42 @@ class instanceView extends Component {
         //console.log('disable server')
     }
 
-	
+    onMenuItemSelected = (item) => {
+        this.setState({
+            isOpen: false,      
+            selectedItem: item,
+        });
+        this.props.navigator.replace({ name: item });
+    }
+
+    toggle() {
+        this.setState({
+          isOpen: !this.state.isOpen,
+        });
+    }
+
+    updateMenuState(isOpen) {
+        this.setState({ isOpen, });
+    }
+
+
+  
     render(){
+
+
+
+        const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>;
+        //const menu = <View style={styles.menu}><Text style={styles.item}>Item 1</Text><Text style={styles.item}>Item 2</Text></View>;
         if(!this.state.loaded){
             return this.renderLoadingView();
         }
         return(
 
-            	/*<ListView
-            		style={styles.container}
-    				dataSource={this.state.dataSource}
-    				renderRow={this.renderInstance.bind(this)}
-    	        />*/
-            
-                
+            <SideMenu	
+                menu={menu}
+                isOpen={this.state.isOpen}
+                onChange={(isOpen) => this.updateMenuState(isOpen)}>
+                <MenuButton onPress={() => this.toggle()}/>
                 <SwipeListView
                         style={styles.container}
                         dataSource={this.state.dataSource}
@@ -134,7 +166,7 @@ class instanceView extends Component {
                         
                     />
             
-            
+            </SideMenu>
 			
         )
     }
@@ -142,9 +174,6 @@ class instanceView extends Component {
 
 
 
-/*const styles = StyleSheet.create({
-    
-})*/
 
 
 module.exports = instanceView;
