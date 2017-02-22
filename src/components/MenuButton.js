@@ -12,7 +12,10 @@ import {
 var styles = require('./style');
 
 class MenuButton extends Component {
-
+  constructor(props){
+    super(props);
+    this.state = {}
+  }
   handlePress(e) {
     
     if (this.props.onPress) {
@@ -21,6 +24,7 @@ class MenuButton extends Component {
   }
 
   render() {
+    
     return (
       <View style={styles.menuButton} >
         <TouchableOpacity 

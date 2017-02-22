@@ -46,6 +46,14 @@ module.exports = StyleSheet.create({
 		color:'#000',
 		textAlign: 'center'
 	},
+	sceneName:{
+		fontSize: 16,
+    	fontWeight: 'bold',
+		paddingTop:10, 
+		marginLeft:20,
+		color:'#000',
+		textAlign: 'center'
+	},
 	/****end  index.android.js****/
 	loading:{
     	flex: 1,
@@ -134,6 +142,7 @@ module.exports = StyleSheet.create({
         color: '#a9a9a9',
     },
     /**************/
+
     titleLogin:{
 		marginTop: 100,
 		fontSize: 25,
