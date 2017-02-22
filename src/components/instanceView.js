@@ -35,6 +35,7 @@ class instanceView extends Component {
     constructor(props){
 
         super(props);
+
         this.timestamp = 1;
         this.public_key = '45ecdcaeb78978d778efd8847d848127';
         this.private_key =  'eeceb71751be29a622067d9929cb6ae3fab323e3';
@@ -43,6 +44,7 @@ class instanceView extends Component {
                 rowHasChanged: (row1,row2) => row1 !== row2							
             }),
             loaded: false,
+
 
         }
     }
@@ -121,7 +123,7 @@ class instanceView extends Component {
         this.setState({
             isOpen: false,      
             selectedItem: item,
-        });
+          });
         this.props.navigator.replace({ name: item });
     }
 
@@ -140,9 +142,9 @@ class instanceView extends Component {
   
     render(){
 
+        //console.log (this.props.route);
 
-
-        const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>;
+        const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator} />;
         //const menu = <View style={styles.menu}><Text style={styles.item}>Item 1</Text><Text style={styles.item}>Item 2</Text></View>;
         if(!this.state.loaded){
             return this.renderLoadingView();
@@ -153,7 +155,7 @@ class instanceView extends Component {
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
-                <MenuButton onPress={() => this.toggle()}/>
+                <MenuButton route={this.props.route}  onPress={() => this.toggle()}/>
                 <SwipeListView
                         style={styles.container}
                         dataSource={this.state.dataSource}

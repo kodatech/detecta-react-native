@@ -56,7 +56,7 @@ class AboutUs extends Component {
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
-                <MenuButton onPress={() => this.toggle()}/>
+                <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
                 <Text style={styles.container}>AboutUs</Text>
             </SideMenu>
     )

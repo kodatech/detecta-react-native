@@ -118,7 +118,7 @@ class alertView extends Component {
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
-                <MenuButton onPress={() => this.toggle()}/>
+                <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
                 <ListView 
                 	style={styles.container}
     				dataSource={this.state.dataSource}

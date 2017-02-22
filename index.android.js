@@ -65,6 +65,27 @@ var NavigatorBarRouteMapper = {
   }
 }
 
+var prueba = {
+  LeftButton: function (route, navigator, index){
+    return null
+    
+  },
+  RightButton: function (route, navigator, index){
+    return null;
+    
+    
+  },
+  
+  Title: function (route, navigator, index){
+
+    //return null;
+    if(route.name == 'Login'){
+      return null
+    }
+    return <Text style={styles.navbarTitle}>{route.name}</Text>
+  }
+}
+
 
 
 export default class detecta extends Component {
@@ -78,6 +99,7 @@ export default class detecta extends Component {
    
 
   renderScene(route, navigator){
+    
     switch (route.name){
       case 'Login':
         return (
@@ -160,6 +182,7 @@ export default class detecta extends Component {
             }
             return Navigator.SceneConfigs.FloatFromRight
           }}
+          
         /*navigationBar={
           <Navigator.NavigationBar
             routeMapper={NavigatorBarRouteMapper}/>

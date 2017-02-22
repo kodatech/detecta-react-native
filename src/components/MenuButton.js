@@ -12,10 +12,9 @@ import {
 var styles = require('./style');
 
 class MenuButton extends Component {
-  constructor(props){
-    super(props);
-    this.state = {}
-  }
+
+
+  
   handlePress(e) {
     
     if (this.props.onPress) {
@@ -24,16 +23,17 @@ class MenuButton extends Component {
   }
 
   render() {
-    
+    //console.log(this.props.route)
     return (
-      <View style={styles.menuButton} >
+      <View style={styles.toolBarContainer} >
         <TouchableOpacity 
           onPress={this.handlePress.bind(this)}
 
-          style={this.props.style}>
-          <Text>{this.props.children}</Text>
+          style={styles.toolBar}>
+          
           <Image
-            source={{ uri: 'http://i.imgur.com/vKRaKDX.png', width: 40, height: 40, }} />        
+            source={{ uri: 'http://i.imgur.com/vKRaKDX.png', width: 40, height: 40}} />
+            <Text style={styles.sceneName}>{this.props.route.name}</Text>       
         </TouchableOpacity>      
       </View>
     );

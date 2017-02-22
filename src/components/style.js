@@ -46,14 +46,7 @@ module.exports = StyleSheet.create({
 		color:'#000',
 		textAlign: 'center'
 	},
-	sceneName:{
-		fontSize: 16,
-    	fontWeight: 'bold',
-		paddingTop:10, 
-		marginLeft:20,
-		color:'#000',
-		textAlign: 'center'
-	},
+	
 	/****end  index.android.js****/
 	loading:{
     	flex: 1,
@@ -190,13 +183,37 @@ module.exports = StyleSheet.create({
       fontWeight: '300',
       paddingTop: 60,
   }, 
-  menuButton: {
-        //paddingTop: 5,
+  toolBarContainer: {
         paddingLeft: 20,
+        
         marginTop:2,
+        marginBottom:0,
         height:1,
 
         
     }, 
+
+    toolBar: {
+        flexDirection:'row', 
+        flexWrap:'wrap',
+
+        
+    }, 
+
+	sceneName:{
+		fontSize: 16,
+    	fontWeight: 'bold',
+		paddingTop:10, 
+		marginLeft:40,
+		color:'#000',
+		textAlign: 'center'
+	},
+
+	sidebarName:{
+		fontSize: 22,
+    	fontWeight: 'bold',
+    	paddingTop: 60,
+
+	}
 
 });

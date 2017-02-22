@@ -11,19 +11,28 @@ var styles = require('./style');
 
 class Menu extends Component {
 
+  constructor(props) {
+      super(props);
+      //console.log('menu')
+      //console.log(this.props.route)
+  }
+
   static propTypes = {
     onItemSelected: React.PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-      super(props);
-  }
+  
 
   render() {
 
     return (
 
       <ScrollView scrollsToTop={false} style={styles.menu}>
+
+        <Text
+          style={styles.sidebarName}>
+          Detecta
+        </Text>
 
         <Text
           onPress={() => this.props.onItemSelected('Instance')}
