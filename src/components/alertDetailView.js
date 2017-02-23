@@ -31,7 +31,7 @@ class alertDetailView extends Component {
     }
     onMenuItemSelected = (item) => {
         this.setState({
-            isOpen: false,      
+            isOpen: false,
             selectedItem: item,
         });
         this.props.navigator.replace({ name: item });
@@ -49,13 +49,13 @@ class alertDetailView extends Component {
     render(){
         const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>;
         return(
-            <SideMenu   
+            <SideMenu
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
                 <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
-                
-                <View style={styles.containerDetail}>
+
+                <View style={styles.container}>
                     <View style={styles.alertDetail}>
                         <Text style={styles.titleDetail}>{this.passProps.alert.name}</Text>
                         <Text style={styles.descriptionDetail}>
@@ -67,7 +67,7 @@ class alertDetailView extends Component {
 
                 </View>
             </SideMenu>
-        
+
     )
     }
 }

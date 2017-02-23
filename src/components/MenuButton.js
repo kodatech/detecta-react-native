@@ -14,9 +14,9 @@ var styles = require('./style');
 class MenuButton extends Component {
 
 
-  
+
   handlePress(e) {
-    
+
     if (this.props.onPress) {
       this.props.onPress(e);
     }
@@ -26,15 +26,16 @@ class MenuButton extends Component {
     //console.log(this.props.route)
     return (
       <View style={styles.toolBarContainer} >
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={this.handlePress.bind(this)}
 
           style={styles.toolBar}>
-          
+
           <Image
-            source={{ uri: 'http://i.imgur.com/vKRaKDX.png', width: 40, height: 40}} />
-            <Text style={styles.sceneName}>{this.props.route.name}</Text>       
-        </TouchableOpacity>      
+            source={{ uri: 'http://i.imgur.com/vKRaKDX.png', width: 20, height: 20}} />
+
+            <Text style={styles.sceneName}>{this.props.route.name}</Text>
+        </TouchableOpacity>
       </View>
     );
   }

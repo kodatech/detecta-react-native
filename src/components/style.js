@@ -9,7 +9,7 @@ var {
 module.exports = StyleSheet.create({
 
 	container: {
-    	marginTop: 63,
+    	marginTop: 35,
         flex: 1,
         backgroundColor: '#F5FCFF',
     },
@@ -27,26 +27,26 @@ module.exports = StyleSheet.create({
 	navbar: {
 		fontSize: 16,
     	fontWeight: 'bold',
-		marginTop:10, 
+		marginTop:10,
 		marginLeft:20,
 		color:'#000',
 	},
 	navbarLogout:{
 		fontSize: 16,
     	fontWeight: 'bold',
-		marginTop:10, 
+		marginTop:10,
 		marginLeft:20,
 		color:'#000',
 	},
 	navbarTitle: {
 		fontSize: 16,
     	fontWeight: 'bold',
-		marginTop:10, 
+		marginTop:10,
 		marginLeft:20,
 		color:'#000',
 		textAlign: 'center'
 	},
-	
+
 	/****end  index.android.js****/
 	loading:{
     	flex: 1,
@@ -106,11 +106,7 @@ module.exports = StyleSheet.create({
 		textAlign: 'center',
 	},
 	/****alertDetailView****/
-	containerDetail: {
-        marginTop: 63,
-        flex: 1,
-        backgroundColor: '#f5f5dc'
-    },
+	
     alertDetail:{
         marginLeft: 20
     },
@@ -182,28 +178,28 @@ module.exports = StyleSheet.create({
       fontSize: 16,
       fontWeight: '300',
       paddingTop: 60,
-  }, 
+  },
   toolBarContainer: {
         paddingLeft: 20,
-        
-        marginTop:2,
+
+        marginTop:25,
         marginBottom:0,
         height:1,
 
-        
-    }, 
+
+    },
 
     toolBar: {
-        flexDirection:'row', 
+        flexDirection:'row',
         flexWrap:'wrap',
 
-        
-    }, 
+
+    },
 
 	sceneName:{
-		fontSize: 16,
+		fontSize: 13,
     	fontWeight: 'bold',
-		paddingTop:10, 
+		paddingTop:2,
 		marginLeft:40,
 		color:'#000',
 		textAlign: 'center'

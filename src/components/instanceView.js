@@ -12,7 +12,7 @@ import {
     TouchableOpacity,
     ScrollView,
     Button,
-    
+
 
 } from 'react-native';
 
@@ -41,35 +41,41 @@ class instanceView extends Component {
         this.private_key =  'eeceb71751be29a622067d9929cb6ae3fab323e3';
         this.state = {
             dataSource: new ListView.DataSource({
-                rowHasChanged: (row1,row2) => row1 !== row2							
+                rowHasChanged: (row1,row2) => row1 !== row2
             }),
             loaded: false,
 
 
         }
     }
-    
+
     componentDidMount(){
-        this.fetchData(); 
+        this.fetchData();
     }
 
     fetchData(){
         var hash = Crypto.MD5(this.timestamp + this.private_key + this.public_key);
-        fetch(REQUEST_URL+'?ts='+this.timestamp+'&apikey='+this.public_key+'&hash='+hash).then((response) => response.json()).then((responseData) => this.setState({
+        const requestURL = REQUEST_URL+'?ts='+this.timestamp+'&apikey='+this.public_key+'&hash='+hash
+        console.log('requestURL', requestURL)
+        fetch(requestURL).then((response) => {
+          console.log(response)
+          return response.json()
+        }).then((responseData) => this.setState({
             dataSource: this.state.dataSource.cloneWithRows(responseData.data.results),
             loaded: true
         }))
+
     }
-    
+
     renderLoadingView(){
         return(
         <View style= {styles.loading}>
             <Text style={{}}>Loading ......</Text>
         </View>)
     }
-   
+
     onInstancePressed(){
-    
+
         this.props.navigator.push({
             name: 'Alert',
             title: 'Alert',
@@ -80,30 +86,30 @@ class instanceView extends Component {
     renderInstance(instance){
         return(
            	<TouchableHighlight onPress={()=>this.onInstancePressed()}>
-        		
+
 		            <View style={styles.rowItem}>
 			            <View style={styles.rightContainer}>
 			                <Text style={styles.title}>{instance.name} </Text>
-			                
+
 			            </View>
-			            
+
 			            <View style={styles.itemAfter}>
-							    <Text style={styles.badge}>{instance.comics.available}</Text> 
+							    <Text style={styles.badge}>{instance.comics.available}</Text>
 						</View>
 					</View>
-				
+
 	        </TouchableHighlight>
 
-	       
+
         )
     }
-   
+
     renderHidden(instance){
         return (
             <View style={styles.rowBack}>
                 <TouchableOpacity onPress={()=> this._deleteRow(instance) }>
                     <Text style={styles.backTextWhite}>Left</Text>
-                </TouchableOpacity> 
+                </TouchableOpacity>
             </View>
         )
     }
@@ -121,7 +127,7 @@ class instanceView extends Component {
 
     onMenuItemSelected = (item) => {
         this.setState({
-            isOpen: false,      
+            isOpen: false,
             selectedItem: item,
           });
         this.props.navigator.replace({ name: item });
@@ -130,7 +136,7 @@ class instanceView extends Component {
     toggle() {
         this.setState({
           isOpen: !this.state.isOpen,
-          
+
         });
     }
 
@@ -139,7 +145,7 @@ class instanceView extends Component {
     }
 
 
-  
+
     render(){
 
         //console.log (this.props.route);
@@ -151,7 +157,7 @@ class instanceView extends Component {
         }
         return(
 
-            <SideMenu	
+            <SideMenu
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
@@ -166,11 +172,11 @@ class instanceView extends Component {
                         leftOpenValue={75}
                         //rightOpenValue={-150}
                         disableLeftSwipe
-                        
+
                     />
-            
+
             </SideMenu>
-			
+
         )
     }
 }
