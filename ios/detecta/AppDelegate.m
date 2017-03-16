@@ -8,11 +8,15 @@
  */
 
 #import "AppDelegate.h"
-
+#import <OneSignal/OneSignal.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <RCTOneSignal.h>
 
+//@property (strong, nonatomic) RCTOneSignal* oneSignal;
 @implementation AppDelegate
+//@synthesize oneSignal = _oneSignal;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,7 +35,17 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  //Add this line. Replace '5eb5a37e-b458-11e3-ac11-000c2940e62c' with your OneSignal App ID.
+  [OneSignal initWithLaunchOptions:launchOptions appId:@"e5afb5bf-8286-46d2-9fe7-296c73336833"];
+  //self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
+  //                                                       appId:@"e5afb5bf-8286-46d2-9fe7-296c73336833"];
+  
   return YES;
 }
 
+// Required for the notification event.
+/*- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)notification {
+  [RCTOneSignal didReceiveRemoteNotification:notification];
+}*/
 @end

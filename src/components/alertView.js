@@ -38,12 +38,12 @@ class alertView extends Component {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1,row2) => row1 !== row2
             }),
-            loaded: false 
+            loaded: false
         }
     }
-    
+
     componentDidMount(){
-        this.fetchData(); 
+        this.fetchData();
     }
     fetchData(){
         var hash = Crypto.MD5(this.timestamp + this.private_key + this.public_key);
@@ -52,7 +52,7 @@ class alertView extends Component {
             loaded: true
         }))
     }
-    
+
     renderLoadingView(){
         return(
         <View style= {styles.loading}>
@@ -60,7 +60,7 @@ class alertView extends Component {
         </View>)
     }
     onAlertPressed(alert){
-    
+
         this.props.navigator.push({
             name: 'Details',
             title: alert.name,
@@ -68,29 +68,22 @@ class alertView extends Component {
         })
     }
     renderAlert(alert){
-        
+
         return(
-        	
+
         	<TouchableHighlight style={styles.rowFront} onPress={()=>this.onAlertPressed(alert)}>
-        		
-		            <View style={styles.rowItem}>
-			            <View style={styles.rightContainer}>
-			                <Text style={styles.title}>{alert.name} </Text>
-			                
-			            </View>
-			            
-			            
-					</View>
-				
+		        <View style={styles.rowItem}>
+			        <View style={styles.rightContainer}>
+			          <Text style={styles.rowTitle}>{alert.name} </Text>
+			        </View>
+					  </View>
 	        </TouchableHighlight>
-	        
-	        
         )
     }
-    
+
 	onMenuItemSelected = (item) => {
         this.setState({
-            isOpen: false,      
+            isOpen: false,
             selectedItem: item,
         });
         this.props.navigator.replace({ name: item });
@@ -114,17 +107,17 @@ class alertView extends Component {
         }
         return(
 
-            <SideMenu   
+            <SideMenu
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
                 <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
-                <ListView 
+                <ListView
                 	style={styles.container}
     				dataSource={this.state.dataSource}
     				renderRow={this.renderAlert.bind(this)}
     		    />
-            
+
 			</SideMenu>
         )
     }

@@ -9,7 +9,7 @@ import  {
   TouchableHighlight,
   Image,
   TextInput,
-  
+
 } from 'react-native';
 
 var styles = require('./style');
@@ -26,15 +26,15 @@ class loginView extends Component{
 
 		return(
 			<View style={styles.containerLogin}>
-				<View >
+				<View style={styles.loginBlock}>
 					<Text style={styles.titleLogin}>Detecta</Text>
 					<TextInput
-				        style={{height: 40, borderColor: 'gray', borderWidth: 0}}
+				        style={{height: 40, borderColor: '#ddd', color: '#424242', borderWidth: 1, marginTop: 20, paddingLeft: 5, borderRadius: 3,}}
 				        onChangeText={(usr) => this.setState({usr})}
 				        value={this.state.usr}
 				    />
 				    <TextInput
-				        style={{height: 40, borderColor: 'gray', borderWidth: 0}}
+				        style={{height: 40, borderColor: '#ddd', color: '#424242', borderWidth: 1, marginTop: 20, paddingLeft: 5, borderRadius: 3,}}
 				        onChangeText={(pass) => this.setState({pass})}
 				        value={this.state.pass}
 				    />
@@ -54,7 +54,7 @@ class loginView extends Component{
 				{
 					text: 'Aceptar',
 					onPress: (this.aceptar.bind(this))
-					
+
 				},
 				{
 					text: 'Cancelar',

@@ -55,7 +55,7 @@ class alertDetailView extends Component {
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
                 <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
 
-                <View style={styles.container}>
+                <View style={styles.containerTextDetail}>
                     <View style={styles.alertDetail}>
                         <Text style={styles.titleDetail}>{this.passProps.alert.name}</Text>
                         <Text style={styles.descriptionDetail}>

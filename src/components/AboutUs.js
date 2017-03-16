@@ -33,7 +33,7 @@ class AboutUs extends Component {
 
     onMenuItemSelected = (item) => {
         this.setState({
-            isOpen: false,      
+            isOpen: false,
             selectedItem: item,
         });
         this.props.navigator.replace({ name: item });
@@ -48,16 +48,16 @@ class AboutUs extends Component {
     updateMenuState(isOpen) {
         this.setState({ isOpen, });
     }
-    
+
     render(){
         const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>;
         return(
-           <SideMenu   
+           <SideMenu
                 menu={menu}
                 isOpen={this.state.isOpen}
                 onChange={(isOpen) => this.updateMenuState(isOpen)}>
                 <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
-                <Text style={styles.container}>AboutUs</Text>
+                <Text style={styles.containerText}>AboutUs</Text>
             </SideMenu>
     )
     }

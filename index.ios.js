@@ -17,7 +17,7 @@ import {
 
 var styles = require('./src/components/style');
 
-//import OneSignal from 'react-native-onesignal';
+import OneSignal from 'react-native-onesignal';
 
 const Login = require('./src/components/loginView')
 //const Tabs = require('./src/components/tabs')
@@ -140,7 +140,7 @@ export default class detecta extends Component {
 
   componentWillMount() {
         // Sending single tag
-        //OneSignal.sendTag("key", "Customer One");
+        OneSignal.sendTag("key", "Customer One");
     }
 
   _setNavigatorRef(navigator) {

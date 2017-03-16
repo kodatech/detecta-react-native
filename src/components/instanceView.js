@@ -20,6 +20,8 @@ import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 
 const REQUEST_URL = "http://gateway.marvel.com:80/v1/public/characters";
 
+var DeviceInfo = require('react-native-device-info');
+
 var SideMenu = require('react-native-side-menu');
 
 var Crypto = require('crypto-js');
@@ -58,7 +60,7 @@ class instanceView extends Component {
         const requestURL = REQUEST_URL+'?ts='+this.timestamp+'&apikey='+this.public_key+'&hash='+hash
         console.log('requestURL', requestURL)
         fetch(requestURL).then((response) => {
-          console.log(response)
+          //console.log(response)
           return response.json()
         }).then((responseData) => this.setState({
             dataSource: this.state.dataSource.cloneWithRows(responseData.data.results),
@@ -86,18 +88,20 @@ class instanceView extends Component {
     renderInstance(instance){
         return(
            	<TouchableHighlight onPress={()=>this.onInstancePressed()}>
-
-		            <View style={styles.rowItem}>
-			            <View style={styles.rightContainer}>
-			                <Text style={styles.title}>{instance.name} </Text>
-
-			            </View>
-
-			            <View style={styles.itemAfter}>
+              <View style={styles.rowItem}>
+                <View style={styles.rightContainer}>
+                  <Text style={styles.rowTitle}>{instance.name} </Text>
+                </View>
+                <View>
+                  <Text style={styles.rowSubTitle}>Product: {instance.name} </Text>
+                </View>
+                <View>
+                  <Text style={styles.rowUptime}>Uptime: {instance.name} </Text>
+                </View>
+			          <View style={styles.itemAfter}>
 							    <Text style={styles.badge}>{instance.comics.available}</Text>
-						</View>
-					</View>
-
+                </View>
+              </View>
 	        </TouchableHighlight>
 
 
@@ -149,7 +153,9 @@ class instanceView extends Component {
     render(){
 
         //console.log (this.props.route);
-
+        //com.reactnative.detecta
+        //org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)
+        //console.log("Bundle ID", DeviceInfo.getBundleId());
         const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator} />;
         //const menu = <View style={styles.menu}><Text style={styles.item}>Item 1</Text><Text style={styles.item}>Item 2</Text></View>;
         if(!this.state.loaded){
