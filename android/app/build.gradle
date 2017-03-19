@@ -80,23 +80,31 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
+
+def computeVersionName() {
+  return VERSION_NAME
+}
+
+def computeVersionCode() {
+  return Integer.parseInt(VERSION_CODE)
+}
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.detecta"
+        applicationId "com.detecta.app"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode computeVersionCode()
+        versionName computeVersionName()
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        manifestPlaceholders = [onesignal_app_id: "e5afb5bf-8286-46d2-9fe7-296c73336833",
-                                onesignal_google_project_number: "891059390456"]
+        manifestPlaceholders = [onesignal_app_id: "ONESIGNAL_APP_ID",
+                                onesignal_google_project_number: "GCM_SENDER_ID"]
     }
     signingConfigs {
         release {
