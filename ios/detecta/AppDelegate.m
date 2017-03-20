@@ -37,7 +37,8 @@
   [self.window makeKeyAndVisible];
   
   //Add this line. Replace '5eb5a37e-b458-11e3-ac11-000c2940e62c' with your OneSignal App ID.
-  [OneSignal initWithLaunchOptions:launchOptions appId:@"e5afb5bf-8286-46d2-9fe7-296c73336833"];
+  NSString *ONESIGNAL_APP_ID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"OneSignalAppId"];
+  [OneSignal initWithLaunchOptions:launchOptions appId:ONESIGNAL_APP_ID];
   //self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
   //                                                       appId:@"e5afb5bf-8286-46d2-9fe7-296c73336833"];
   
