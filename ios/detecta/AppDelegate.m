@@ -8,21 +8,29 @@
  */
 
 #import "AppDelegate.h"
-#import <OneSignal/OneSignal.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <RCTOneSignal.h>
+#import "RCTOneSignal.h"
 
-//@property (strong, nonatomic) RCTOneSignal* oneSignal;
 @implementation AppDelegate
-//@synthesize oneSignal = _oneSignal;
 
+- (void)setupOneSignal:(NSDictionary *)launchOptions {
+  NSString *ONESIGNAL_APP_ID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"OneSignalAppId"];
+  [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
+                                                         appId:ONESIGNAL_APP_ID];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  
+  #if DEBUG
+    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  
+  #else
+    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  
+  #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"detecta"
@@ -36,10 +44,8 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
-  //Add this line. Replace '5eb5a37e-b458-11e3-ac11-000c2940e62c' with your OneSignal App ID.
-  [OneSignal initWithLaunchOptions:launchOptions appId:@"e5afb5bf-8286-46d2-9fe7-296c73336833"];
-  //self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
-  //                                                       appId:@"e5afb5bf-8286-46d2-9fe7-296c73336833"];
+  // Initialize OneSignal
+  [self setupOneSignal:launchOptions];
   
   return YES;
 }
