@@ -7,15 +7,15 @@ target 'detecta' do
 
   # Pods for detecta
 
-  target 'detecta-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'detectaTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  # target 'detecta-tvOSTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
+  #
+  # target 'detectaTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
 
 end
 
@@ -31,4 +31,5 @@ end
 #   end
 #
 # end
+
 pod 'OneSignal'

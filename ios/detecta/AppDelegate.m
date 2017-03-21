@@ -11,7 +11,6 @@
 #import <OneSignal/OneSignal.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <RCTOneSignal.h>
 
 //@property (strong, nonatomic) RCTOneSignal* oneSignal;
 @implementation AppDelegate
