@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint src",
     "test": "jest"
   },
   "dependencies": {
@@ -16,16 +17,14 @@
     "react-native-swipe-list-view": "^0.3.3"
   },
   "devDependencies": {
+    "babel-eslint": "^6.1.0",
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
+    "eslint": "^3.4.0",
+    "eslint-config-google": "^0.6.0",
+    "eslint-plugin-babel": "^3.3.0",
     "jest": "18.1.0",
-    "react-test-renderer": "15.4.2",
-    "babel-eslint": "^6.1.0",
-    "eslint": "^2.13.1",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.10.0",
-    "eslint-plugin-jsx-a11y": "^1.5.3",
-    "eslint-plugin-react": "^5.2.2"
+    "react-test-renderer": "15.4.2"
   },
   "jest": {
     "preset": "react-native"

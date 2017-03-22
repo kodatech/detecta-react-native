@@ -1,13 +1,9 @@
 'use strict'
-
-var React = require('react-native')
-
-var {
+import {
   StyleSheet
-} = React
+} from 'react-native'
 
 module.exports = StyleSheet.create({
-
   container: {
     marginTop: 0,
     flex: 1,
@@ -144,8 +140,6 @@ module.exports = StyleSheet.create({
     fontSize: 16,
     color: '#546e7a'
   },
-    /**************/
-
   titleLogin: {
     fontSize: 22,
     textAlign: 'center',

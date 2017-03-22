@@ -1,69 +1,61 @@
 'use strict'
 import React, { Component } from 'react'
-
 import {
   Text,
-    View,
-    
+  View
 } from 'react-native'
-
-var styles = require('./style');
-
-var SideMenu = require('react-native-side-menu');
-
-var Menu = require('./Menu');
-
-var MenuButton = require('./MenuButton');
+import SideMenu from 'react-native-side-menu'
+import styles from './style'
+import Menu from './Menu'
+import MenuButton from './MenuButton'
 
 class disableServerView extends Component {
-    constructor(props){
-        super(props)
-        console.log(this.props.route.passProps)
-        this.passProps = this.props.route.passProps
-        this.modified = this.passProps.instance.modified.slice(0,10)
-        this.state = {
-            loaded: false,
-        }
+  constructor(props) {
+    super(props)
+    console.log(this.props.route.passProps)
+    this.passProps = this.props.route.passProps
+    this.modified = this.passProps.instance.modified.slice(0, 10)
+    this.state = {
+      loaded: false
     }
-    onMenuItemSelected = (item) => {
-        this.setState({
-            isOpen: false,      
-            selectedItem: item,
-        });
-        this.props.navigator.replace({ name: item });
-    }
+  }
 
-    toggle() {
-        this.setState({
-          isOpen: !this.state.isOpen,
-        });
-    }
+  onMenuItemSelected = (item) => {
+    this.setState({
+      isOpen: false,
+      selectedItem: item
+    })
+    this.props.navigator.replace({ name: item })
+  }
 
-    updateMenuState(isOpen) {
-        this.setState({ isOpen, });
-    }
-    render(){
-        const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>;
-        return(
-            <SideMenu   
-                menu={menu}
-                isOpen={this.state.isOpen}
-                onChange={(isOpen) => this.updateMenuState(isOpen)}>
-                <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
-            
-                <View style={styles.container}>
-                    
-                    <Text>
-                        Disable: {this.passProps.instance.name}
-                    </Text>
-                    
-                </View>
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
 
-            </SideMenu>
-        
+  updateMenuState(isOpen) {
+    this.setState({ isOpen })
+  }
+
+  render() {
+    const menu = <Menu onItemSelected={this.onMenuItemSelected} navigator={this.props.navigator}/>
+    return (
+      <SideMenu
+        menu={menu}
+        isOpen={this.state.isOpen}
+        onChange={(isOpen) => this.updateMenuState(isOpen)}>
+        <MenuButton route={this.props.route} onPress={() => this.toggle()}/>
+
+        <View style={styles.container}>
+            <Text>
+                Disable: {this.passProps.instance.name}
+            </Text>
+        </View>
+
+      </SideMenu>
     )
-    }
+  }
 }
-
 
 module.exports = disableServerView

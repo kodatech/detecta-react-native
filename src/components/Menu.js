@@ -1,34 +1,27 @@
 'use strict'
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
 import {
   Text,
   ScrollView
-
-} from 'react-native';
-
-var styles = require('./style');
+} from 'react-native'
+import styles from './style'
 
 class Menu extends Component {
-
+/*
   constructor(props) {
-      super(props);
+      super(props)
       //console.log('menu')
       //console.log(this.props.route)
   }
+*/
 
   static propTypes = {
-    onItemSelected: React.PropTypes.func.isRequired,
-  };
-
-  
+    onItemSelected: React.PropTypes.func.isRequired
+  }
 
   render() {
-
     return (
-
       <ScrollView scrollsToTop={false} style={styles.menu}>
-
         <Text
           style={styles.sidebarName}>
           Detecta
@@ -52,9 +45,8 @@ class Menu extends Component {
           Logout
         </Text>
       </ScrollView>
-    );
+    )
   }
-};
+}
 
-
-module.exports = Menu;
+module.exports = Menu
